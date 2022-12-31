@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import * as _ from 'lodash';
 import { Router } from '@angular/router';
 
 @Component({

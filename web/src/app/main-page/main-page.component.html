@@ -1,5 +1,3 @@
-<!-- <router-outlet></router-outlet> -->
-
 <div class="area">
   <ul class="circles">
     <li></li>
@@ -14,7 +12,6 @@
     <li></li>
     <li></li>
     <li></li>
-
     <mat-toolbar class="navbar">
       <div class="title">Unique Resume</div>
       <div>
@@ -39,10 +36,9 @@
       <button mat-menu-item>one</button>
     </mat-menu>
 
-
     <div id="gap"></div>
     <div class="border">
-      <mat-stepper orientation="vertical" animationDuration="1500" linear #stepper>
+      <mat-stepper orientation="vertical" animationDuration="1500" #stepper>
         <mat-step [stepControl]="personalDetails" label="Personal Details" errorMessage="Some Fields are still empty">
           <mat-hint>NOTE: First letter of the every input should be capital</mat-hint>
           <form [formGroup]="personalDetails">
@@ -219,7 +215,7 @@
         <mat-step [stepControl]="experienceDetails" label="Experience" errorMessage="Some Fields are still empty">
           <mat-hint>Maximum 3 experiences allowed</mat-hint>
           <div [formGroup]="experienceDetails">
-            <button mat-raised-button color="primary" class="add-btn exp-btn" (click)="addNewExperience()">
+            <button mat-raised-button color="primary" class="add-btn exp-btn" (click)="addExperience()">
               ADD EXPERIENCE &emsp; &emsp;<mat-icon>add_circle</mat-icon>
             </button>
             <ng-container formArrayName="experiences">
@@ -264,7 +260,7 @@
 
         <mat-step [stepControl]="projectDetails" label="Projects" errorMessage="Some Fields are still empty">
           <mat-hint>Maximum 2 projects allowed</mat-hint>
-          <button mat-raised-button color="primary" class="add-btn" (click)="addNewProjects()">
+          <button mat-raised-button color="primary" class="add-btn" (click)="addProjects()">
             ADD PROJECT &emsp; &emsp;<mat-icon>add_circle</mat-icon>
           </button>
           <form [formGroup]="projectDetails">
@@ -309,7 +305,7 @@
             <mat-form-field class="example-chip-list">
               <mat-label>Technical Skills</mat-label>
               <mat-chip-list #techSkillList>
-                <mat-chip *ngFor="let techSkill of technicalSkills" (removed)="removeTechSkill(techSkill)">
+                <mat-chip *ngFor="let techSkill of technicalSkillsArray" (removed)="removeTechSkill(techSkill)">
                   {{techSkill}}
                   <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
@@ -326,7 +322,7 @@
             <mat-form-field class="example-chip-list">
               <mat-label>Non Technical Skills</mat-label>
               <mat-chip-list #nonTechSkillList>
-                <mat-chip *ngFor="let nonTechSkill of nonTechnicalSkills" (removed)="removeNonTechSkill(nonTechSkill)">
+                <mat-chip *ngFor="let nonTechSkill of nonTechnicalSkillsArray" (removed)="removeNonTechSkill(nonTechSkill)">
                   {{nonTechSkill}}
                   <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
@@ -393,9 +389,9 @@
             </mat-form-field> <br>
             <mat-form-field appearance="fill" id="profile-picture-form-field">
               <mat-label>Profile Picture</mat-label>
-              <ngx-mat-file-input formControlName="profilePicture" type="file" (change)="load($event)" #removableInput
-                required></ngx-mat-file-input>
-              <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="setImageCondition()"
+              <ngx-mat-file-input formControlName="profilePicture" type="file" (change)="profilePicture($event)"
+                #removableInput required></ngx-mat-file-input>
+              <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removeImage()"
                 (click)="removableInput.clear($event)">
                 <mat-icon matSuffix>clear</mat-icon>
               </button>
@@ -412,7 +408,7 @@
             <button mat-mini-fab color="primary" class="previous-button" matStepperPrevious>
               <mat-icon>keyboard_arrow_up</mat-icon>
             </button>
-            <button mat-button color="primary" class="next-button" (click)="showSwalFire()">Finish</button>
+            <button mat-button color="primary" class="next-button" (click)="showAlert()">Finish</button>
           </div>
 
         </mat-step>
