@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -7,16 +7,18 @@ import ts from 'src/type/types';
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
 
-
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
+
 export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  // error state kaaga 
   
   @ViewChild("techSkillList") techSkillList: any;
   @ViewChild("nonTechSkillList") nonTechSkillList: any;
@@ -24,6 +26,8 @@ export class MainPageComponent implements OnInit {
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  hasExperience: boolean = true;
+  hasProjects: boolean = true;
   technicalSkillsArray: string[] = [];
   nonTechnicalSkillsArray: string[] = [];
   hobbies: string[] = [];
@@ -37,7 +41,7 @@ export class MainPageComponent implements OnInit {
   yAxisDownRight: number = 0;
   isExperienceLimitReached: boolean = false;
 
-  constructor(private _formBuilder: FormBuilder, private apiService: ApiService) { }
+  constructor(private _formBuilder: FormBuilder, private apiService: ApiService) {}
 
   userDetails: ts = {
     first_name: '',
@@ -169,6 +173,7 @@ export class MainPageComponent implements OnInit {
     })
 
     if(this.experiences.length !== 3) {
+      this.hasExperience = false;
       this.experiences.push(experienceForm); // experiences array kulla push pandree... each and every user gets new experience form   
     }
     else {
@@ -178,7 +183,10 @@ export class MainPageComponent implements OnInit {
   }
 
   deleteExperience(experienceIdx: number): void {
-    this.experiences.removeAt(experienceIdx)
+    this.experiences.removeAt(experienceIdx);
+    if(this.experiences.length === 0) {
+      this.hasExperience = true;
+    }
   }
 
   addProjects(): void {
@@ -189,13 +197,17 @@ export class MainPageComponent implements OnInit {
     })
     
     if(this.projects.length !== 2) {
+      this.hasProjects = false;
       this.projects.push(projectForm);
     }
 
   }
 
   deleteProjects(experienceIdx: number): void {
-    this.projects.removeAt(experienceIdx)
+    this.projects.removeAt(experienceIdx);
+    if(this.projects.length === 0) {
+      this.hasProjects = true;
+    }
   }
 
   addTechSkills(event: MatChipInputEvent): boolean {
@@ -571,9 +583,10 @@ export class MainPageComponent implements OnInit {
   }
 
   profilePicture(event: any): void {
+    console.log(typeof event);
 
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onloadend = (event) => { // called once readAsDataURL is completed
 

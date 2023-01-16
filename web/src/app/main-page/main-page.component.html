@@ -1,17 +1,5 @@
 <div class="area">
   <ul class="circles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
     <mat-toolbar class="navbar">
       <div class="title">Unique Resume</div>
       <div>
@@ -28,21 +16,19 @@
           <mat-icon color="primary">person</mat-icon>
         </button>
       </div>
-    </mat-toolbar>
-
+    </mat-toolbar>   
     <mat-menu class="mat-menu" #personMenu="matMenu">
       <button mat-menu-item>one</button>
       <button mat-menu-item>one</button>
       <button mat-menu-item>one</button>
     </mat-menu>
-
     <div id="gap"></div>
     <div class="border">
-      <mat-stepper orientation="vertical" animationDuration="1500" #stepper>
+      <mat-stepper orientation="vertical" linear animationDuration="1500" #stepper>
         <mat-step [stepControl]="personalDetails" label="Personal Details" errorMessage="Some Fields are still empty">
           <mat-hint>NOTE: First letter of the every input should be capital</mat-hint>
           <form [formGroup]="personalDetails">
-            <ng-template matStepperIcon="edit">
+            <ng-tem plate matStepperIcon="edit">
               <mat-icon>check_circle_outline</mat-icon>
             </ng-template>
             <mat-form-field>
@@ -252,12 +238,11 @@
             <button mat-mini-fab color="primary" class="previous-button" matStepperPrevious>
               <mat-icon>keyboard_arrow_up</mat-icon>
             </button>
-            <button mat-mini-fab color="primary" class="next-button" matStepperNext>
+            <button mat-mini-fab color="primary" class="next-button" [disabled]="hasExperience" matStepperNext>
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
           </div>
         </mat-step>
-
         <mat-step [stepControl]="projectDetails" label="Projects" errorMessage="Some Fields are still empty">
           <mat-hint>Maximum 2 projects allowed</mat-hint>
           <button mat-raised-button color="primary" class="add-btn" (click)="addProjects()">
@@ -292,13 +277,12 @@
               <button mat-mini-fab color="primary" class="previous-button" matStepperPrevious>
                 <mat-icon>keyboard_arrow_up</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" class="next-button" matStepperNext>
+              <button mat-mini-fab color="primary" class="next-button" [disabled]="hasProjects" matStepperNext>
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </button>
             </div>
           </form>
         </mat-step>
-
         <mat-step [stepControl]="skillDetails" label="Skills" errorMessage="Some Fields are still empty">
           <form [formGroup]="skillDetails">
             <mat-hint>Maximum six skills allowed in both section</mat-hint>
@@ -322,7 +306,8 @@
             <mat-form-field class="example-chip-list">
               <mat-label>Non Technical Skills</mat-label>
               <mat-chip-list #nonTechSkillList>
-                <mat-chip *ngFor="let nonTechSkill of nonTechnicalSkillsArray" (removed)="removeNonTechSkill(nonTechSkill)">
+                <mat-chip *ngFor="let nonTechSkill of nonTechnicalSkillsArray"
+                  (removed)="removeNonTechSkill(nonTechSkill)">
                   {{nonTechSkill}}
                   <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
@@ -415,5 +400,15 @@
       </mat-stepper>
       <!-- <button id="jspdf-button" class="btn btn-primary">asdfasfd</button> -->
     </div>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
   </ul>
 </div>

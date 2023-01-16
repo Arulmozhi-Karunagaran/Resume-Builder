@@ -6,7 +6,10 @@
     "birthday": "",
     "field_of_study": "B.E ECE",
     "gender": "Male",
-    "languages_known": null,
+    "languages_known": [
+        "Tamil",
+        "English"
+    ],
     "state": "Tamil Nadu",
     "city": "Dharmapuri",
     "pin_code": 636701,
@@ -19,11 +22,44 @@
     "school_location": "Dharmapuri",
     "hsc_percentage": 90,
     "sslc_percentage": 90,
-    "companies": [],
-    "projects": [],
-    "technical_skills": [],
-    "non_technical_skills": [],
-    "hobbies": [],
+    "companies": [
+        {
+            "companyName": "TrusTrace",
+            "companyLocation": "Coimbatore",
+            "startYear": "121",
+            "endYear": "1221"
+        },
+        {
+            "companyName": "TrusTrace",
+            "companyLocation": "Coimbatore",
+            "startYear": "112",
+            "endYear": "21121"
+        }
+    ],
+    "projects": [
+        {
+            "projectName": "TrusTrace",
+            "projectDomain": "Coimbatore",
+            "projectDescription": "Begin each item by stating the name of the place, location, dates, and job title (e.g. manager, volunteer) List experiences in reverse chronological order (most current experience first)."
+        }
+    ],
+    "technical_skills": [
+        "asdc",
+        "asdf",
+        "asdasa",
+        "asda"
+    ],
+    "non_technical_skills": [
+        "asdfsadf",
+        "sdasadfsfd",
+        "sdf"
+    ],
+    "hobbies": [
+        "dsfsfd",
+        "sdf",
+        "safd",
+        "sfd"
+    ],
     "user_profiles": null,
     "github_url": "https://github.com/Arulmozhi-Karunagaran/TrusTrace-Training",
     "linikedIn_url": "https://www.linkedin.com/in/preethiuthayakumar/",
