@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -13,13 +13,8 @@ import jsPDF from 'jspdf';
   styleUrls: ['./main-page.component.scss']
 })
 
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
 
-  ngOnInit(): void {
-  }
-
-  // error state kaaga 
-  
   @ViewChild("techSkillList") techSkillList: any;
   @ViewChild("nonTechSkillList") nonTechSkillList: any;
   @ViewChild("hobbyList") hobbyList: any;
@@ -92,13 +87,13 @@ export class MainPageComponent implements OnInit {
   personalDetails = this._formBuilder.group({
     firstName: ['Arulmozhi', [Validators.required, Validators.pattern(/[A-Z][a-z]/)]],
     lastName: ['Karunagaran', [Validators.required, Validators.pattern(/[A-Za-z]/)]],
-    phoneNumber: [6374553281, (Validators.required, Validators.min(10000000000), Validators.max(999999999999), Validators.pattern(/[0-9]/))],
+    phoneNumber: [6374553281, (Validators.required, Validators.pattern(/[0-9]{10}/))],
     birthday: ['15/04/2002', Validators.required],
     gender: '1',
-    email: ['saruarul154@gmail.com', [Validators.required, Validators.email]],
+    email: ['saruarul154@gmail.com', [Validators.required, Validators.pattern(/([a-zA-Z]+)\.([a-zA-Z]+)@(trustrace.com)/gi)]],
     state: ['Tamil Nadu', [Validators.required, Validators.pattern(/[A-Z][a-z]/)]],
     city: ['Dharmapuri', Validators.required],
-    pinCode: [636701, (Validators.required, Validators.pattern(/[0-9]{6}/))],
+    pinCode: [636701, [Validators.required, Validators.pattern(/[0-9]{6}/)]],
     languagesKnown: [null, Validators.required]
   })
 
@@ -560,7 +555,6 @@ export class MainPageComponent implements OnInit {
     }
 
   }
-
 
   addProjectsInsidePDF(doc: jsPDF): void {
     let idx: number = 0;

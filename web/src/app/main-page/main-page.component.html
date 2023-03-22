@@ -16,7 +16,7 @@
           <mat-icon color="primary">person</mat-icon>
         </button>
       </div>
-    </mat-toolbar>   
+    </mat-toolbar>
     <mat-menu class="mat-menu" #personMenu="matMenu">
       <button mat-menu-item>one</button>
       <button mat-menu-item>one</button>
@@ -28,7 +28,7 @@
         <mat-step [stepControl]="personalDetails" label="Personal Details" errorMessage="Some Fields are still empty">
           <mat-hint>NOTE: First letter of the every input should be capital</mat-hint>
           <form [formGroup]="personalDetails">
-            <ng-tem plate matStepperIcon="edit">
+            <ng-template matStepperIcon="edit">
               <mat-icon>check_circle_outline</mat-icon>
             </ng-template>
             <mat-form-field>
